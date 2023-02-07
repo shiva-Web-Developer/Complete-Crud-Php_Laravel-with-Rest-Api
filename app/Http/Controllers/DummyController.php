@@ -1,6 +1,8 @@
 <?php
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
+// Hash Function 
+use Illuminate\Support\Facades\Hash;
 // linked Model 
 use App\Models\Device;
 
@@ -15,6 +17,7 @@ class DummyController extends Controller
         $newFood = new Device;
         $newFood->name = $request->name;
         $newFood->number = $request->number;
+        $newFood->password = Hash::make($request->password);
         if($newFood->save()){return ["Result"=>"Data has been Saved !"];}else{return ["Result"=>"Data has been not Saved !"];}}
 
     // get data from the db 
